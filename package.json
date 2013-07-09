@@ -1,0 +1,24 @@
+{
+  "name": "imouto",
+  "version": "0.0.0",
+  "description": "My little bot can't be this functional.",
+  "main": "imoutoweb.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arya-s/imouto.git"
+  },
+  "keywords": [
+    "IRC",
+    "bot"
+  ],
+  "author": "",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "gitHead": "9d4ce1760f013f88ab0e4e200fd145f9cd1376cb",
+  "dependencies": {
+    "express": "~3.3.4"
+  }
+}
