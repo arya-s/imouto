@@ -2,7 +2,7 @@
   "name": "imouto",
   "version": "0.0.0",
   "description": "My little bot can't be this functional.",
-  "main": "imoutoweb.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
