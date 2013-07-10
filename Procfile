@@ -1,1 +1,1 @@
-web: node imoutoweb.js
+web: node server.js
