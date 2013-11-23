@@ -23,7 +23,6 @@ bot.addListener('message', function(nick, to, text, message) {
     var options = {
       host: 'api.github.com',
       path: '/search/code?q=new+Point+repo:arya-s/GestureRecognizer',
-      method: 'GET',
       headers: {
         //accept: 'application/vnd.github.v3.text-match+json'
         accept: '*/*'
