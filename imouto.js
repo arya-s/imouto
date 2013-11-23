@@ -55,14 +55,7 @@ bot.addListener('message', function(nick, to, text, message) {
       });
       response.on('end', function() {
         var json = JSON.parse(body);
-        var repos = [];
-        json.forEach(function(repo) {
-          repos.push({
-            name: repo.name,
-            description: repo.description
-          });
-        });
-        console.log('the repos are  ' + JSON.stringify(repos));
+        console.log('Data:'+JSON.stringify(json));
       });
 
     });
