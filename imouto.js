@@ -25,8 +25,6 @@ bot.addListener('message', function(nick, to, text, message) {
     https.get(options, function(res){
       var output = ''
 
-      res.setEncodig('utf-8');
-
       res.on('data', function(chunk){
         output += chunk;
       });
