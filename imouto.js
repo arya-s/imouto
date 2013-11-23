@@ -6,8 +6,7 @@ var config = {
 var irc = require('irc');
 var bot = new irc.Client(
   config.server,
-  config.botname,
-  {
+  config.botname, {
     channels: config.channels,
     debug: true,
     floodProtection: true,
@@ -19,29 +18,58 @@ var bot = new irc.Client(
 var https = require('https');
 
 bot.addListener('message', function(nick, to, text, message) {
-  if(text.indexOf('.todo') !== -1){
-    var options = {
-      host: 'api.github.com',
-      path: '/search/code?q=new+Point+repo:arya-s/GestureRecognizer',
-      headers: {
-        //accept: 'application/vnd.github.v3.text-match+json'
-        accept: '*/*'
-      }
-    };
+  if (text.indexOf('.todo') !== -1) {
+    // var options = {
+    //   host: 'api.github.com',
+    //   path: '/search/code?q=new+Point+repo:arya-s/GestureRecognizer',
+    //   headers: {
+    //     //accept: 'application/vnd.github.v3.text-match+json'
+    //     accept: '*/*'
+    //   }
+    // };
 
-    https.get(options, function(resp) {
-      var data = "";
-      resp.setEncoding('utf8');
-      
-      resp.on('data', function (chunk) {
-        data += chunk;
+    // https.get(options, function(resp) {
+    //   var data = "";
+    //   resp.setEncoding('utf8');
+
+    //   resp.on('data', function (chunk) {
+    //     data += chunk;
+    //   });
+
+    //   resp.on('end', function () {
+    //     repos = JSON.parse(data); 
+    //     console.log(repos);
+    //     });
+    // });
+
+    var options = {
+      host: "api.github.com",
+      path: '/users/arya-s/repos',
+      method: 'GET'
+    }
+
+    var request = https.request(options, function(response) {
+      var body = '';
+      response.on('data', function(chunk) {
+        body += chunk;
+      });
+      response.on('end', function() {
+        var json = JSON.parse(body);
+        var repos = [];
+        json.forEach(function(repo) {
+          repos.push({
+            name: repo.name,
+            description: repo.description
+          });
+        });
+        console.log('the repos are  ' + JSON.stringify(repos));
       });
 
-      resp.on('end', function () {
-        repos = JSON.parse(data); 
-        console.log(repos);
-        });
     });
+    request.on('error', function(e) {
+      console.error('and the error is ' + e);
+    });
+    request.end();
 
     // https.get(options, function(res){
     //   var output = ''
