@@ -28,34 +28,49 @@ bot.addListener('message', function(nick, to, text, message) {
         accept: '*/*'
       }
     };
-    https.get(options, function(res){
-      var output = ''
 
-      res.on('data', function(chunk){
-        output += chunk;
+    https.get(options, function(resp) {
+      var data = "";
+      resp.setEncoding('utf8');
+      
+      resp.on('data', function (chunk) {
+        data += chunk;
       });
 
-      res.on('end', function(){
-        var response;
-
-        try{
-          response = JSON.parse(output);
-        }
-        catch(e){
-          console.log('Invalid request. ',e);
-        }
-
-        if(!response || response.success !== 1){
-          console.log('Unsuccessful call to api.');
-        }
-        else{
-          console.log(response);
-        }
-      });
-
-      res.on('error', function(e){
-        console.log('Error: '+e.message);
-      });
+      resp.on('end', function () {
+        repos = JSON.parse(data); 
+        console.log(repos);
+        });
     });
+
+    // https.get(options, function(res){
+    //   var output = ''
+
+    //   res.on('data', function(chunk){
+    //     output += chunk;
+    //   });
+
+    //   res.on('end', function(){
+    //     var response;
+
+    //     try{
+    //       response = JSON.parse(output);
+    //     }
+    //     catch(e){
+    //       console.log('Invalid request. ',e);
+    //     }
+
+    //     if(!response || response.success !== 1){
+    //       console.log('Unsuccessful call to api.');
+    //     }
+    //     else{
+    //       console.log(response);
+    //     }
+    //   });
+
+    //   res.on('error', function(e){
+    //     console.log('Error: '+e.message);
+    //   });
+    // });
   }
 });
