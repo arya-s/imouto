@@ -44,7 +44,7 @@ bot.addListener('message', function(nick, to, text, message) {
 
     var options = {
       host: "api.github.com",
-      path: '/users/arya-s/repos',
+      path: '/search/code?q=new+Point+repo:arya-s/GestureRecognizer',
       method: 'GET'
     }
 
