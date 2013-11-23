@@ -20,8 +20,14 @@ var https = require('https');
 
 bot.addListener('message', function(nick, to, text, message) {
   if(text.indexOf('.todo') !== -1){
-    var options = 'https://api.github.com/search/code?q=new+Point+repo:arya-s/GestureRecognizer';
-
+    var options = {
+      host: 'api.github.com',
+      path: '/search/code?q=new+Point+repo:arya-s/GestureRecognizer',
+      method: 'GET',
+      headers: {
+        accept: 'application/vnd.github.v3.text-match+json'
+      }
+    };
     https.get(options, function(res){
       var output = ''
 
