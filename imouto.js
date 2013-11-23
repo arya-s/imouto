@@ -23,8 +23,7 @@ bot.addListener('message', function(nick, to, text, message) {
       host: 'api.github.com',
       path: '/search/code?q=new+Point+repo:arya-s/GestureRecognizer',
       headers: {
-        //accept: 'application/vnd.github.v3.text-match+json'
-        accept: '*/*'
+        accept: 'application/vnd.github.v3.text-match+json'
       }
     };
 
@@ -41,58 +40,5 @@ bot.addListener('message', function(nick, to, text, message) {
         console.log(JSON.stringify(json));
         });
     });
-
-    // var options = {
-    //   host: "api.github.com",
-    //   path: '/search/code?q=new+Point+repo:arya-s/GestureRecognizer',
-    //   method: 'GET',
-    //   headers: {}
-    // }
-
-    // var request = https.request(options, function(response) {
-    //   var body = '';
-    //   response.on('data', function(chunk) {
-    //     body += chunk;
-    //   });
-    //   response.on('end', function() {
-    //     var json = JSON.parse(body);
-    //     console.log('Data:'+JSON.stringify(json));
-    //   });
-
-    // });
-    // request.on('error', function(e) {
-    //   console.error('and the error is ' + e);
-    // });
-    // request.end();
-
-    // https.get(options, function(res){
-    //   var output = ''
-
-    //   res.on('data', function(chunk){
-    //     output += chunk;
-    //   });
-
-    //   res.on('end', function(){
-    //     var response;
-
-    //     try{
-    //       response = JSON.parse(output);
-    //     }
-    //     catch(e){
-    //       console.log('Invalid request. ',e);
-    //     }
-
-    //     if(!response || response.success !== 1){
-    //       console.log('Unsuccessful call to api.');
-    //     }
-    //     else{
-    //       console.log(response);
-    //     }
-    //   });
-
-    //   res.on('error', function(e){
-    //     console.log('Error: '+e.message);
-    //   });
-    // });
   }
 });
