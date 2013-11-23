@@ -22,7 +22,7 @@ bot.addListener('message', function(nick, to, text, message) {
   if(text.indexOf('.todo') !== -1){
     var options = 'https://api.github.com/search/code?q=new+Point+repo:arya-s/GestureRecognizer';
 
-    https.get(options, function(red){
+    https.get(options, function(res){
       var output = ''
 
       res.setEncodig('utf-8');
