@@ -39,7 +39,7 @@ bot.addListener('message', function(nick, to, text, message) {
         var response;
 
         try{
-          response = JSON.parse(output).response;
+          response = JSON.parse(output);
         }
         catch(e){
           console.log('Invalid request. ',e);
