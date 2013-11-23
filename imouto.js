@@ -47,7 +47,11 @@ bot.addListener('message', function(nick, to, text, message) {
         else{
           console.log(response);
         }
-      })
+      });
+
+      res.on('error', function(e){
+        console.log('Error: '+e.message);
+      });
     });
   }
 });
