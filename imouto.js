@@ -19,50 +19,51 @@ var https = require('https');
 
 bot.addListener('message', function(nick, to, text, message) {
   if (text.indexOf('.todo') !== -1) {
+    var options = {
+      host: 'api.github.com',
+      path: '/search/code?q=new+Point+repo:arya-s/GestureRecognizer',
+      headers: {
+        //accept: 'application/vnd.github.v3.text-match+json'
+        accept: '*/*'
+      }
+    };
+
+    https.get(options, function(res) {
+      var data = "";
+      res.setEncoding('utf8');
+
+      res.on('data', function (chunk) {
+        data += chunk;
+      });
+
+      res.on('end', function () {
+        json = JSON.parse(data); 
+        console.log(JSON.stringify(json));
+        });
+    });
+
     // var options = {
-    //   host: 'api.github.com',
+    //   host: "api.github.com",
     //   path: '/search/code?q=new+Point+repo:arya-s/GestureRecognizer',
-    //   headers: {
-    //     //accept: 'application/vnd.github.v3.text-match+json'
-    //     accept: '*/*'
-    //   }
-    // };
+    //   method: 'GET',
+    //   headers: {}
+    // }
 
-    // https.get(options, function(resp) {
-    //   var data = "";
-    //   resp.setEncoding('utf8');
-
-    //   resp.on('data', function (chunk) {
-    //     data += chunk;
+    // var request = https.request(options, function(response) {
+    //   var body = '';
+    //   response.on('data', function(chunk) {
+    //     body += chunk;
+    //   });
+    //   response.on('end', function() {
+    //     var json = JSON.parse(body);
+    //     console.log('Data:'+JSON.stringify(json));
     //   });
 
-    //   resp.on('end', function () {
-    //     repos = JSON.parse(data); 
-    //     console.log(repos);
-    //     });
     // });
-
-    var options = {
-      host: "api.github.com",
-      path: '/search/code?q=new+Point+repo:arya-s/GestureRecognizer',
-      method: 'GET'
-    }
-
-    var request = https.request(options, function(response) {
-      var body = '';
-      response.on('data', function(chunk) {
-        body += chunk;
-      });
-      response.on('end', function() {
-        var json = JSON.parse(body);
-        console.log('Data:'+JSON.stringify(json));
-      });
-
-    });
-    request.on('error', function(e) {
-      console.error('and the error is ' + e);
-    });
-    request.end();
+    // request.on('error', function(e) {
+    //   console.error('and the error is ' + e);
+    // });
+    // request.end();
 
     // https.get(options, function(res){
     //   var output = ''
