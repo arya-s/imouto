@@ -16,13 +16,13 @@ var bot = new irc.Client(
 );
 
 //TODO TRACKER
-var http = require('http');
+var https = require('https');
 
 bot.addListener('message', function(nick, to, text, message) {
   if(text.indexOf('.todo') !== -1){
     var options = 'https://api.github.com/search/code?q=new+Point+repo:arya-s/GestureRecognizer';
 
-    http.get(options, function(red){
+    https.get(options, function(red){
       var output = ''
 
       res.setEncodig('utf-8');
