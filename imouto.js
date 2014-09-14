@@ -23,12 +23,11 @@ function randomResponseTime() {
 }
 
 bot.addListener('message', function(nick, to, text, message) {
-    //actually delaying responses
-    var delay = randomResponseTime();
-    setTimeout(function() {
-        bot.say(to, 'this is a delayed response of ' + delay);
-    }, delay);
     if(text.indexOf('hi imouto') !== -1){
-        bot.say(to, 'hi2u2');
+        //actually delaying responses
+        var delay = randomResponseTime();
+        setTimeout(function() {
+            bot.say(to, 'hi2u2, this is a delayed response of ' + delay);
+        }, delay);
     }
 });
